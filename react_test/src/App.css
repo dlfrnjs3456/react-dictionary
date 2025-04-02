@@ -1,0 +1,114 @@
+.headTitle {
+  text-align : center;
+  font-weight: bold;
+  font-size : 31px;
+  margin:30px;
+  font-family : arial;
+}
+
+.tabs { 
+  display: flex;
+  background: #f8f9fa; /* 회색 배경 */
+  padding: 5px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.tab-buttons { 
+  display: flex;
+  flex : 1;
+  border-bottom: 2px solid #eee;
+}
+
+.tab-button { 
+  flex: 1;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: #6c757d; /* 기본 글씨 색 */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.tab-button.active {
+  background: white;
+  color: black;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.tab-button:not(.active):hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.inputBox {
+  display : flex;
+  flex : 1;
+  margin: 0 auto;
+  justify-content: center; 
+  padding-top : 20px;
+  text-align: center;
+}
+
+.serachBox { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%; 
+  max-width: 600px; 
+  padding: 8px 12px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: white; 
+  height : 25px;
+}
+
+.searchBtn { 
+  background: black;
+  color : white;
+  width : 100px;
+  font-size : 15px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body { 
+    background-color: black;
+  }
+
+  .headTitle {
+    color : white;
+  }
+
+  .tab-buttons { 
+    color:black;
+    border-bottom : 2px solid rgb(46, 45, 45);
+  }
+
+  .tabs { 
+    background : rgb(46, 45, 45);
+  }
+
+  .tab-button.active {
+    background: black;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  }
+
+  .tab-button {
+    color : gray;
+  }
+
+  .serachBox { 
+    border : 2px solid white;
+    background : black;
+    color : white;
+    border-radius: 10px;
+  }
+}
