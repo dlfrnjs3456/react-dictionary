@@ -1,14 +1,14 @@
 .headTitle {
-  text-align : center;
+  text-align: center;
   font-weight: bold;
-  font-size : 31px;
-  margin:30px;
-  font-family : arial;
+  font-size: 31px;
+  margin: 30px;
+  font-family: arial;
 }
 
-.tabs { 
+.tabs {
   display: flex;
-  background: #f8f9fa; /* 회색 배경 */
+  background: #f8f9fa;
   padding: 5px;
   border-radius: 8px;
   width: 100%;
@@ -16,18 +16,18 @@
   margin: 0 auto;
 }
 
-.tab-buttons { 
+.tab-buttons {
   display: flex;
-  flex : 1;
+  flex: 1;
   border-bottom: 2px solid #eee;
 }
 
-.tab-button { 
+.tab-button {
   flex: 1;
   padding: 8px 16px;
   background: transparent;
   border: none;
-  color: #6c757d; /* 기본 글씨 색 */
+  color: #6c757d;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -39,7 +39,7 @@
 .tab-button.active {
   background: white;
   color: black;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .tab-button:not(.active):hover {
@@ -47,68 +47,191 @@
 }
 
 .inputBox {
-  display : flex;
-  flex : 1;
+  display: flex;
+  flex: 1;
   margin: 0 auto;
-  justify-content: center; 
-  padding-top : 20px;
+  justify-content: center;
+  padding-top: 20px;
   text-align: center;
 }
 
-.serachBox { 
+.serachBox {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  width: 100%; 
-  max-width: 600px; 
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
   padding: 8px 12px;
-  border: 2px solid black;
   border-radius: 10px;
-  background: white; 
-  height : 25px;
+  background: white;
+  height: 25px;
+  font-size: 15px;
 }
 
-.searchBtn { 
+.searchBtn {
   background: black;
-  color : white;
-  width : 100px;
-  font-size : 15px;
+  color: white;
+  width: 100px;
+  font-size: 15px;
   font-weight: bold;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.speaker {
+  display: flex;
+  padding-left: 15px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.resultBox {
+  position: relative;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+
+}
+
+.addVoca {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: black;
+  color: white;
+  width: 220px;
+  height: 40px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+
+  transition: background 0.3s ease-in-out;
+}
+
+ul { 
+  list-style-type:decimal
+}
+
+.word {
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.meaningBox { 
+  line-height: 1.8;
+}
+
+.DEF { 
+  font-size : 17px;
+  font-weight: 500;
+}
+
+.example {
+  color : gray;
+  font-size:15px;
+  font-style : italic;
+}
+
+.phonetic {
+  font-size: 13px;
+  color: rgb(133, 117, 117);
+}
+
+.POS {
+  margin-top: 30px;  
+  display: inline-block;
+  border: 2px solid rgb(236, 230, 230);
+  border-radius: 20px;
+  padding: 1px 10px;
+  background-color: white;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
 }
 
 @media (prefers-color-scheme: dark) {
-  body { 
+  body {
     background-color: black;
   }
 
   .headTitle {
-    color : white;
+    color: white;
   }
 
-  .tab-buttons { 
-    color:black;
-    border-bottom : 2px solid rgb(46, 45, 45);
+  .tab-buttons {
+    color: black;
+    border-bottom: 2px solid rgb(46, 45, 45);
   }
 
-  .tabs { 
-    background : rgb(46, 45, 45);
+  .tabs {
+    background: rgb(46, 45, 45);
   }
 
   .tab-button.active {
     background: black;
     color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .tab-button {
-    color : gray;
+    color: gray;
   }
 
-  .serachBox { 
-    border : 2px solid white;
-    background : black;
-    color : white;
+  .serachBox {
+    background: black;
+    color: white;
     border-radius: 10px;
+  }
+
+  .searchBtn {
+    background: white;
+    color: black;
+  }
+
+  .meaningBox{
+    background: black;
+  }
+
+  .resultBox {
+    background: black;
+  }
+
+  .word {
+    color: white;
+  }
+
+  .speaker {
+    color: white;
+  }
+
+  .glass {
+    color: white;
+  }
+
+  .addVoca { 
+    color : black;
+    background: white;
+  }
+
+  .POS {
+    background: black;
+    color: white;
+  }
+  
+  .DEF { 
+    color : white;
   }
 }
