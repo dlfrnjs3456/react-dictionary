@@ -11,7 +11,7 @@ function App() {
   const [vocabularyLabel, setVocabularyLabel] = useState("My Vocabulary (0)");
   const [activeTab, setActiveTab] = useState(0);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     setVocabularyLabel(`My Vocabulary (${wordsList.length})`);
   }, [wordsList]);

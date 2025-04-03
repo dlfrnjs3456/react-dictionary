@@ -3,6 +3,7 @@ import {PlayingWord} from './Utils/PlayAudio.js'
 
 const SearchResult = ({ searchResult, setWordsList, setActiveTab, error }) => {
     const audioUrl = searchResult?.[0]?.phonetics?.find(entry => entry.audio)?.audio ?? null;
+    debugger
     const addMyVoca = () => {
         const wordsList = JSON.parse(localStorage.getItem("my-voca")) ?? [];
         const newEntry = {
@@ -20,7 +21,7 @@ const SearchResult = ({ searchResult, setWordsList, setActiveTab, error }) => {
     
 
     return <div>
-    {searchResult && (<div className="resultBox">
+    {!error && searchResult && (<div className="resultBox">
         <div className="word">
             {searchResult[0]["word"]}
             {audioUrl && (
@@ -53,7 +54,7 @@ const SearchResult = ({ searchResult, setWordsList, setActiveTab, error }) => {
     </div>
 ))}
     </div>)}
-    {!searchResult && (
+    {error && (
         <div className="errorBox">
             {error}
         </div>

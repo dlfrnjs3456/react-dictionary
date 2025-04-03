@@ -11,6 +11,7 @@ const SearchWord = ({ updateResult, setError }) => {
             const result = await getWord(word);
             localStorage.setItem("search-result", JSON.stringify(result));
             updateResult(result);
+            setError(null);
         }
         catch (error) {
             setError(error.message)
