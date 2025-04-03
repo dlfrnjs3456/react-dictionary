@@ -9,7 +9,9 @@ function App() {
   const [searchResult, setSearchResult] = useState(null);
   const [wordsList, setWordsList] = useState([]);
   const [vocabularyLabel, setVocabularyLabel] = useState("My Vocabulary (0)");
-
+  const [activeTab, setActiveTab] = useState(0);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     setVocabularyLabel(`My Vocabulary (${wordsList.length})`);
   }, [wordsList]);
@@ -28,13 +30,13 @@ function App() {
   return (
     <div className="App">
       <div className="headTitle">English Vocabulary Notebook</div>
-      <Tabs>
-        <div label="Seach Words">
-          <SearchWord updateResult={setSearchResult} />
-          <SearchResult searchResult={searchResult} />
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab}>
+        <div label="Search Words">
+          <SearchWord updateResult={setSearchResult} setError={setError} />
+          <SearchResult searchResult={searchResult} setWordsList={setWordsList} setActiveTab={setActiveTab} error={error}/>
         </div>
         <div label={vocabularyLabel}>
-          <AddVocabulary wordsList={wordsList} />
+          <AddVocabulary wordsList={wordsList} setWordsList={setWordsList} setActiveTab={setActiveTab}/>
         </div>
       </Tabs>
     </div>

@@ -1,60 +1,64 @@
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
+import {PlayingWord} from './Utils/PlayAudio.js'
 
-const SearchResult = ({ searchResult }) => {
+const SearchResult = ({ searchResult, setWordsList, setActiveTab, error }) => {
     const audioUrl = searchResult?.[0]?.phonetics?.find(entry => entry.audio)?.audio ?? null;
-
-    const PlayingWord = () => {
-        if (audioUrl) {
-            new Audio(audioUrl).play();
-        }
-    }
-
     const addMyVoca = () => {
         const wordsList = JSON.parse(localStorage.getItem("my-voca")) ?? [];
-    
         const newEntry = {
           data: searchResult[0],
-          date: new Date().toISOString()
+          date: new Date(),
         };
     
         if (!wordsList.some(entry => JSON.stringify(entry.data) === JSON.stringify(newEntry.data))) {
           wordsList.push(newEntry);
         }
-    
+        setWordsList(wordsList);
         localStorage.setItem("my-voca", JSON.stringify(wordsList));
+        setActiveTab(1)
       }
     
 
-    return searchResult && (<div className="resultBox">
+    return <div>
+    {searchResult && (<div className="resultBox">
         <div className="word">
             {searchResult[0]["word"]}
             {audioUrl && (
-                <HiOutlineSpeakerWave className="speaker" onClick={PlayingWord} />
+                <HiOutlineSpeakerWave className="speaker" onClick={() => PlayingWord(audioUrl)} />
             )}
             <button className="addVoca" onClick={() => addMyVoca()}>+ &nbsp;&nbsp;&nbsp;&nbsp;Add to Vocabulary </button>
         </div>
         <div className="phonetic">
             {searchResult[0]["phonetic"]}
         </div>
-        {searchResult[0].meanings.map((meaning, index) => (
-            <div className="meaningBox">
-                <div className="POS">
-                    {meaning.partOfSpeech}
-                </div>
-                <div className="DEF">
-                    <ul>
-                        {meaning.definitions.slice(0, 3).map((def, idx) => (
-                            <li key={idx}>{def.definition}
-                                <div className="example">
-                                    {def.example ? ` "${def.example}"` : ""}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        ))}
-    </div>)
+        {searchResult?.[0]?.meanings?.map((meaning, index) => (
+    <div className="meaningBox" key={index}>
+        <div className="POS">
+            {meaning.partOfSpeech}
+        </div>
+        <div className="DEF">
+            <ul>
+                {meaning.definitions.slice(0, 3).map((def, idx) => (
+                    <li key={idx}> 
+                        {def.definition}
+                        {def.example && (
+                            <div className="example" key={`example-${idx}`}>  
+                                {`"${def.example}"`}
+                            </div>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </div>
+))}
+    </div>)}
+    {!searchResult && (
+        <div className="errorBox">
+            {error}
+        </div>
+    )}
+    </div>
 }
 
 export default SearchResult;
