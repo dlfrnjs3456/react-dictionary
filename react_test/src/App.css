@@ -90,6 +90,13 @@
   cursor: pointer;
 }
 
+.searchBtn:disabled {
+  background: gray; 
+  color: lightgray;
+  pointer-events: none; 
+  opacity: 0.5;
+}
+
 .speaker {
   display: flex;
   padding-left: 15px;

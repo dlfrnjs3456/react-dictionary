@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import getWord from './DictionaryAPI.js'
 import { PiMagnifyingGlassLight } from "react-icons/pi";
 
-const SearchWord = ({ updateResult, setError }) => {
-
+const SearchWord = ({ updateResult, setError, isDisabled, setDisable }) => {
+    //단어 검색창 
+    //disable의 경우 현재 search 버튼의 상태를 결정하기 위한 prop
     const [word, setWord] = useState("");
 
     const handleWord = async (word) => {
         try {
+            //단어 검색 도중 발생할 error 처리리
+            setDisable(true);
+            setError(null);
             const result = await getWord(word);
             localStorage.setItem("search-result", JSON.stringify(result));
             updateResult(result);
-            setError(null);
         }
         catch (error) {
             setError(error.message)
@@ -23,7 +26,8 @@ const SearchWord = ({ updateResult, setError }) => {
             value={word}
             onChange={(e) => setWord(e.target.value)}
             className="serachBox" />
-        <button className="searchBtn" onClick={() => handleWord(word)}><PiMagnifyingGlassLight className="glass" />  Search</button>
+            {/*버튼 비활성화, 활성화에 따른 텍스트 변경*/}
+        <button className="searchBtn" onClick={() => handleWord(word)} disabled={isDisabled}> {isDisabled ? "Searching..." : <><PiMagnifyingGlassLight className="glass" /> Search</>}</button>
     </div>
 }
 
